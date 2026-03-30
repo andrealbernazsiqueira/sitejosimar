@@ -10,398 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
 
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --accent: #0066ff;
-            --text-muted: #666;
-            --bg-light: #f9f9f9;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--primary);
-            line-height: 1.6;
-            background-color: var(--white);
-        }
-
-        /* --- Navegação --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            background: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -1px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: var(--white);
-            padding: 120px 0 60px 0;
-            /* Substitui o padding da tag section e dá respiro ao navbar */
-            overflow: hidden;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            /* Ocupa tudo, o max-width limita o texto real em p/h1 */
-            padding: 0 10%;
-            /* Alinha exatamente igual às outras seções */
-        }
-
-        .hero-photo {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 55%;
-            height: 90vh;
-            /* Para ancorar no fundo preenchendo quase toda altura */
-            z-index: 1;
-        }
-
-        .hero-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: right bottom;
-            display: block;
-            mix-blend-mode: multiply;
-            /* Faz o fundo branco fundir perfeitamente */
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.05;
-            letter-spacing: -1px;
-            margin-bottom: 25px;
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 480px;
-            margin-bottom: 35px;
-            line-height: 1.6;
-        }
-
-        .hero>.hero-content>span {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        /* --- Badge Rotativo --- */
-        .rotating-badge {
-            position: absolute;
-            left: 0px;
-            /* metade para fora da foto, fica transicionando visualmente entre os elementos */
-            bottom: calc(25% - 150px);
-            width: 140px;
-            height: 140px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .rb-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 50%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-        }
-
-        .badge-text-svg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: spinBadge 15s linear infinite;
-        }
-
-        .badge-text-svg text {
-            font-size: 13.5px;
-            font-weight: 800;
-            fill: var(--primary);
-            letter-spacing: 1.5px;
-        }
-
-        .badge-icon {
-            position: relative;
-            z-index: 2;
-            color: var(--accent);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes spinBadge {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--primary);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s;
-            width: fit-content;
-        }
-
-        .btn:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* --- Seções Gerais --- */
-        section {
-            padding: 100px 10% 60px;
-        }
-
-        .section-header {
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-        }
-
-        /* --- Portfolio (A parte principal) --- */
-        .portfolio-filters {
-            margin-bottom: 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 20px;
-            border: 1px solid #ddd;
-            background: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-card {
-            background: var(--bg-light);
-            padding: 40px;
-            border-radius: 15px;
-            transition: 0.4s;
-            border: 1px solid transparent;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio-card:hover {
-            background: var(--white);
-            border-color: #eee;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-            transform: translateY(-10px);
-        }
-
-        .portfolio-card .tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .portfolio-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        .portfolio-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .read-more {
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .read-more:after {
-            content: ' →';
-            transition: 0.3s;
-        }
-
-        .read-more:hover:after {
-            margin-left: 10px;
-        }
-
-        /* --- Sobre & Experiência --- */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .about-title-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .about-title-row h2 {
-            margin: 0;
-        }
-
-        .avatar-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center;
-            border: 3px solid var(--accent);
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.25);
-            flex-shrink: 0;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .stat-item {
-            padding: 20px;
-            border-left: 3px solid var(--accent);
-            background: var(--bg-light);
-        }
-
-        .stat-item h4 {
-            font-size: 1.5rem;
-        }
-
-        /* --- Rodapé --- */
-        footer {
-            padding: 60px 10%;
-            background: var(--primary);
-            color: var(--white);
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                padding-top: 120px;
-                align-items: flex-start;
-            }
-
-            .hero-content {
-                width: 100%;
-                padding: 0 5%;
-                margin-bottom: 30px;
-            }
-
-            .hero-photo {
-                position: relative;
-                width: 100%;
-                height: 400px;
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            /* Simplicidade para o mobile */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -461,45 +70,57 @@
         </div>
 
         <div class="portfolio-filters">
-            <button class="filter-btn active" onclick="filterSelection('all')">Todos</button>
-            <button class="filter-btn" onclick="filterSelection('seo')">Artigos SEO</button>
-            <button class="filter-btn" onclick="filterSelection('ux')">UX Writing</button>
-            <button class="filter-btn" onclick="filterSelection('social')">Social Media</button>
+            <button class="filter-btn active" onclick="filterSelection('all', event)">Todos</button>
+            <button class="filter-btn" onclick="filterSelection('seo', event)">Artigos SEO</button>
+            <button class="filter-btn" onclick="filterSelection('ux', event)">UX Writing</button>
+            <button class="filter-btn" onclick="filterSelection('social', event)">Social Media</button>
         </div>
 
         <div class="portfolio-grid">
             <!-- Item de Portfólio 1 -->
-            <div class="portfolio-card seo">
-                <span class="tag">SEO / Blog Post</span>
-                <h3>Como otimizar conversões em Landing Pages</h3>
-                <p>Análise aprofundada sobre técnicas de copywriting voltadas para o funil de vendas, focando em
-                    palavras-chave de alta intenção.</p>
-                <a href="#" class="read-more">Ler texto completo</a>
+            <div class="portfolio-card seo" onclick="openModal('images/photo1.jpg', 'SEO / Blog Post', 'Como otimizar conversões em Landing Pages', 'Análise aprofundada sobre técnicas de copywriting voltadas para o funil de vendas, focando em palavras-chave de alta intenção.')">
+                <img src="images/photo1.jpg" alt="Projeto" class="portfolio-card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Foto+do+Projeto'; this.onerror=null;">
+                <div class="portfolio-card-content">
+                    <span class="tag">SEO / Blog Post</span>
+                    <h3>Como otimizar conversões em Landing Pages</h3>
+                    <p>Análise aprofundada sobre técnicas de copywriting voltadas para o funil de vendas, focando em
+                        palavras-chave de alta intenção.</p>
+                    <span class="read-more">Ler texto completo</span>
+                </div>
             </div>
 
             <!-- Item de Portfólio 2 -->
-            <div class="portfolio-card ux">
-                <span class="tag">UX Writing / Microcopy</span>
-                <h3>Reformulação de Fluxo de Checkout</h3>
-                <p>Melhoria na experiência do usuário através da simplificação de textos e mensagens de erro, reduzindo
-                    o abandono de carrinho em 15%.</p>
-                <a href="#" class="read-more">Ver estudo de caso</a>
+            <div class="portfolio-card ux" onclick="openModal('images/photo2.jpg', 'UX Writing / Microcopy', 'Reformulação de Fluxo de Checkout', 'Melhoria na experiência do usuário através da simplificação de textos e mensagens de erro, reduzindo o abandono de carrinho em 15%.')">
+                <img src="images/photo2.jpg" alt="Projeto" class="portfolio-card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Foto+do+Projeto'; this.onerror=null;">
+                <div class="portfolio-card-content">
+                    <span class="tag">UX Writing / Microcopy</span>
+                    <h3>Reformulação de Fluxo de Checkout</h3>
+                    <p>Melhoria na experiência do usuário através da simplificação de textos e mensagens de erro, reduzindo
+                        o abandono de carrinho em 15%.</p>
+                    <span class="read-more">Ver estudo de caso</span>
+                </div>
             </div>
 
             <!-- Item de Portfólio 3 -->
-            <div class="portfolio-card social">
-                <span class="tag">Social Media Strategy</span>
-                <h3>Gestão de Redes: Caso @amismg</h3>
-                <p>Planejamento de conteúdo e redação criativa para engajamento orgânico no Instagram e Facebook.</p>
-                <a href="#" class="read-more">Ver posts</a>
+            <div class="portfolio-card social" onclick="openModal('images/photo3.jpg', 'Social Media Strategy', 'Gestão de Redes: Caso @amismg', 'Planejamento de conteúdo e redação criativa para engajamento orgânico no Instagram e Facebook.')">
+                <img src="images/photo3.jpg" alt="Projeto" class="portfolio-card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Foto+do+Projeto'; this.onerror=null;">
+                <div class="portfolio-card-content">
+                    <span class="tag">Social Media Strategy</span>
+                    <h3>Gestão de Redes: Caso @amismg</h3>
+                    <p>Planejamento de conteúdo e redação criativa para engajamento orgânico no Instagram e Facebook.</p>
+                    <span class="read-more">Ver posts</span>
+                </div>
             </div>
 
             <!-- Espaço para Novos Textos -->
-            <div class="portfolio-card seo">
-                <span class="tag">SEO</span>
-                <h3>Título do seu próximo grande artigo</h3>
-                <p>Aqui você pode descrever o problema que resolveu com seu texto e os resultados alcançados.</p>
-                <a href="#" class="read-more">Link do arquivo/site</a>
+            <div class="portfolio-card seo" onclick="openModal('images/photo4.jpg', 'SEO', 'Título do seu próximo grande artigo', 'Aqui você pode descrever o problema que resolveu com seu texto e os resultados alcançados.')">
+                <img src="images/photo4.jpg" alt="Projeto" class="portfolio-card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Foto+do+Projeto'; this.onerror=null;">
+                <div class="portfolio-card-content">
+                    <span class="tag">SEO</span>
+                    <h3>Título do seu próximo grande artigo</h3>
+                    <p>Aqui você pode descrever o problema que resolveu com seu texto e os resultados alcançados.</p>
+                    <span class="read-more">Link do arquivo/site</span>
+                </div>
             </div>
         </div>
     </section>
@@ -559,12 +180,23 @@
         <p>© <span id="year"></span> Josimar de Souza Silva. Desenvolvido para máxima legibilidade.</p>
     </footer>
 
+    <!-- Overlay do Modal HTML -->
+    <div id="portfolio-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modal-img" src="" alt="Projeto Portfólio" class="modal-img">
+            <span id="modal-tag" class="modal-tag">Categoria</span>
+            <h2 id="modal-title" class="modal-title">Título do Projeto</h2>
+            <p id="modal-desc" class="modal-p">Descrição detalhada do projeto.</p>
+        </div>
+    </div>
+
     <script>
         // Atualizar ano do footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Filtro do Portfólio
-        function filterSelection(c) {
+        function filterSelection(c, btnEvent) {
             var x, i;
             x = document.getElementsByClassName("portfolio-card");
             if (c == "all") c = "";
@@ -575,16 +207,57 @@
                 }
             }
 
-            // Adicionar classe ativa ao botão
-            var btns = document.getElementsByClassName("filter-btn");
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("active");
+            // Adicionar classe ativa ao botão se houver evento
+            if (btnEvent) {
+                var btns = document.getElementsByClassName("filter-btn");
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].classList.remove("active");
+                }
+                btnEvent.currentTarget.classList.add("active");
             }
-            event.currentTarget.classList.add("active");
         }
 
         // Iniciar com todos visíveis
-        filterSelection('all');
+        filterSelection('all', null);
+
+        // Modal Logic
+        const modal = document.getElementById('portfolio-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTag = document.getElementById('modal-tag');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        function openModal(imageSrc, tag, title, description) {
+            if (imageSrc && !imageSrc.endsWith('.jpg') && !imageSrc.endsWith('.png')) {
+                // fall back logic se não houver image
+            }
+            modalImg.src = imageSrc;
+            modalTag.textContent = tag;
+            modalTitle.textContent = title;
+            modalDesc.textContent = description;
+            
+            // Tratamento de falha nativa na imagem modal
+            modalImg.onerror = function() {
+                this.src = 'https://via.placeholder.com/800x600?text=Foto+do+Projeto';
+                this.onerror = null;
+            };
+            modalImg.style.display = 'block';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // impede scroll de rolar
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fechar clicando fora da container central do modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 
